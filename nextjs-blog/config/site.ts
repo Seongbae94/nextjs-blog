@@ -6,7 +6,7 @@ export interface SiteConfig {
     twitter: string;
     youtube: string;
     github: string;
-    linkedIn: string;
+    linkedin: string;
     instagram: string;
   };
 }
@@ -19,8 +19,8 @@ const siteConfig: SiteConfig = {
   socialLinks: {
     twitter: "",
     youtube: "",
-    github: "",
-    linkedIn: "",
+    github: "https://github.com/Seongbae94/nextjs-blog",
+    linkedin: "",
     instagram: "",
   },
 };
