@@ -1,4 +1,5 @@
 import { DUMMY_POSTS } from "@/DUMMY_DATA";
+import CTACard from "@/components/elements/cta-card";
 import PaddingContainer from "@/components/layout/padding-container";
 import PostCard from "@/components/post/post-card";
 import PostLists from "@/components/post/post-lists";
@@ -11,6 +12,7 @@ export default function Home() {
         <PostLists
           posts={DUMMY_POSTS.filter((post, index) => index > 0 && index < 3)}
         />
+        <CTACard />
         <PostCard reverse post={DUMMY_POSTS[3]} />
         <PostLists
           posts={DUMMY_POSTS.filter((post, index) => index > 3 && index < 6)}
