@@ -2,6 +2,7 @@
 import { DUMMY_CATEGORIES, DUMMY_POSTS } from "@/DUMMY_DATA";
 import PaddingContainer from "@/components/layout/padding-container";
 import PostLists from "@/components/post/post-lists";
+import { notFound } from "next/navigation";
 import React from "react";
 
 export const generateStaticParams = async () => {
@@ -22,6 +23,7 @@ const Page = ({
   const posts = DUMMY_POSTS.filter(
     (post) => post.category.title.toLowerCase() === params.category
   );
+
   return (
     <PaddingContainer>
       <PostLists posts={posts} />
