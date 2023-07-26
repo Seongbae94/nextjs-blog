@@ -28,7 +28,7 @@ const PostCard = ({
         className={`rounded-md w-full object-cover object-center h-full max-h-[300px] ${
           reverse ? "md:order-last" : ""
         }`}
-        src={post.image}
+        src={`${process.env.NEXT_PUBLIC_ASSETS_URL}${post.image}`}
         width={600}
         height={300}
         alt={post.title}

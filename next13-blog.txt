@@ -1,0 +1,8 @@
+secret: 6b8a2e85-1456-4771-a28b-70e9ea53e91b 
+key: AA8F4E827A7BA
+
+token: KfY4_WRs5Xj3tuxBEhikEjslZLJZbT5N
+
+directus:
+seongbaelee94@gmail.com
+qwe123!@
