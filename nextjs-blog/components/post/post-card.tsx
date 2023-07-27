@@ -15,6 +15,7 @@ const PostCard = ({
   layout = "horizontal",
   reverse = false,
 }: PostProps) => {
+  console.log(post);
   return (
     <Link
       className={`@container ${
@@ -25,6 +26,7 @@ const PostCard = ({
       href={`/post/${post.slug}`}
     >
       <Image
+        priority={false}
         className={`rounded-md w-full object-cover object-center h-full max-h-[300px] ${
           reverse ? "md:order-last" : ""
         }`}
