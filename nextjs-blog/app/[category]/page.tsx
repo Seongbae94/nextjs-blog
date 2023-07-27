@@ -7,11 +7,32 @@ import { notFound } from "next/navigation";
 import React from "react";
 
 export const generateStaticParams = async () => {
-  return DUMMY_CATEGORIES.map((category) => {
-    return {
-      category: category.slug,
-    };
-  });
+  // return DUMMY_CATEGORIES.map((category) => {
+  //   return {
+  //     category: category.slug,
+  //   };
+  // });
+
+  try {
+    const categories = await directus.items("category").readByQuery({
+      filter: {
+        status: {
+          _eq: "published",
+        },
+      },
+      fields: ["slug"],
+    });
+
+    const params = categories?.data?.map((category) => {
+      return {
+        category: category.slug as string,
+      };
+    });
+
+    return params || [];
+  } catch (err) {
+    throw new Error("Error fetching categories");
+  }
 };
 
 const Page = async ({
