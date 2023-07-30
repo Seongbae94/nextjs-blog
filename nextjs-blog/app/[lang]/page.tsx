@@ -1,4 +1,3 @@
-import { DUMMY_POSTS } from "@/DUMMY_DATA";
 import CTACard from "@/components/elements/cta-card";
 import PaddingContainer from "@/components/layout/padding-container";
 import PostCard from "@/components/post/post-card";
@@ -6,7 +5,14 @@ import PostLists from "@/components/post/post-lists";
 import directus from "@/lib/directus";
 import { notFound } from "next/navigation";
 
-export default async function Home() {
+export default async function Home({
+  params,
+}: {
+  params: {
+    lang: string;
+  };
+}) {
+  console.log("params", params);
   const getAllPosts = async () => {
     try {
       const posts = await directus.items("post").readByQuery({
