@@ -1,0 +1,28 @@
+{
+  "navigation": {
+    "links": {
+      "cities": "Städte",
+      "experience": "Erlebnisse"
+    }
+  },
+
+  "buttons": {
+    "readMore": "Mehr lesen"
+  },
+
+  "ctaCard": {
+    "title": "Entdecke die Welt mit mir!",
+    "description": "Entdecke die Welt mit mir! Ich reise um die Erde. Ich habe die meisten großen Städte Amerikas besucht und derzeit reise ich in Korea. Mach mit!",
+    "button": "Anmelden",
+    "placeholder": "Schreibe deine E-Mail.",
+    "subscriberText1": "Werde Mitglied unserer",
+    "subscriberText2": "Abonnenten jetzt!"
+  },
+
+  "footer": {
+    "description": "Ein minimalistischer und schöner Reiseblog, der Erfahrungen und Städte rund um die Welt teilt!",
+    "rightsText": "Alle Rechte vorbehalten | Urheberrecht",
+    "creatorText": "Mit Liebe gemacht von",
+    "currentlyAtText": "Derzeit in"
+  }
+}

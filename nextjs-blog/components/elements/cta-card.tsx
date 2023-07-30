@@ -1,9 +1,12 @@
 import directus from "@/lib/directus";
+import { getDictionary } from "@/lib/getDictionary";
 import { revalidatePath, revalidateTag } from "next/cache";
 import Image from "next/image";
 import React from "react";
 
-const CTACard = async () => {
+const CTACard = async ({ locale }: { locale: string }) => {
+  const dictionary = await getDictionary(locale);
+
   const formAction = async (formData: FormData) => {
     "use server";
     try {
@@ -41,12 +44,10 @@ const CTACard = async () => {
       <div className="relative z-20">
         <div className="font-medium text-lg">#exploretheworld</div>
         <h3 className="text-4xl font-semibold mt-3">
-          Explore the world with me!
+          {dictionary.ctaCard.title}
         </h3>
         <p className="mt-2 text-lg max-w-lg">
-          Explore the world with me! I'm traveling around the Earth. I've
-          visited most of the great cities of America and currently I'm
-          traveling in Korea. Join me!
+          {dictionary.ctaCard.description}
         </p>
         <form
           key={subscribersCount + "subscribers-form"}
@@ -56,20 +57,20 @@ const CTACard = async () => {
           <input
             type="email"
             name="email"
-            placeholder="write your email."
+            placeholder={dictionary.ctaCard.placeholder}
             className="md:w-auto w-full bg-white/80 text-base rounded-md placeholder:text-sm py-2 px-3 outline-none focus:ring-2 ring-neutral-600"
           />
           <button className="bg-neutral-900 rounded-md whitespace-nowrap py-2 px-3 text-neutral-200">
-            Sign Up
+            {dictionary.ctaCard.button}
           </button>
         </form>
 
         <div className="mt-5 text-neutral-700">
-          Join our{" "}
+          {dictionary.ctaCard.subscriberText1}{" "}
           <span className="bg-neutral-700 rounded-md text-neutral-100 py-1 px-2 text-sm">
             {subscribersCount}
           </span>{" "}
-          subscribers now!
+          {dictionary.ctaCard.subscriberText2}
         </div>
       </div>
     </div>

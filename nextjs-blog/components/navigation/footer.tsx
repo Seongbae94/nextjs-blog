@@ -3,15 +3,18 @@ import PaddingContainer from "../layout/padding-container";
 import siteConfig from "@/config/site";
 import Link from "next/link";
 import SocialLink from "../elements/social-link";
+import { getDictionary } from "@/lib/getDictionary";
 
-const Footer = () => {
+const Footer = async ({ locale }: { locale: string }) => {
+  const dictionary = await getDictionary(locale);
+
   return (
     <div className="py-8 border-t mt-10">
       <PaddingContainer>
         <div>
           <h2 className="text-3xl font-bold">{siteConfig.siteName}</h2>
           <p className="max-w-md mt-2 text-neutral-700 text-lg">
-            {siteConfig.description}
+            {dictionary.footer.description}
           </p>
         </div>
         {/* social */}
@@ -42,7 +45,9 @@ const Footer = () => {
             </div>
           </div>
           <div>
-            <div className="text-sm text-neutral-400">Currently At</div>
+            <div className="text-sm text-neutral-400">
+              {dictionary.footer.currentlyAtText}
+            </div>
             <div className="bg-white shadow-md rounded-md py-2 px-3 flex items-center gap-2">
               <div className="bg-emerald-400 rounded-full w-2 h-2" />
               {siteConfig.currnetlyAt}
@@ -52,10 +57,10 @@ const Footer = () => {
         {/* bottom */}
         <div className="border-t py-3 flex flex-wrap justify-between items-center gap-4 mt-16">
           <div className="text-sm text-neutral-400">
-            All rights are reserved | Copyright {new Date().getFullYear()}
+            {dictionary.footer.rightsText} {new Date().getFullYear()}
           </div>
           <div>
-            Made with love by
+            {dictionary.footer.creatorText}{" "}
             <Link
               className="underline underline-offset-4"
               href="https://github.com/Seongbae94/nextjs-blog"

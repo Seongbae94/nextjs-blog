@@ -6,13 +6,12 @@ import directus from "@/lib/directus";
 import { notFound } from "next/navigation";
 
 export default async function Home({
-  params,
+  params: { lang },
 }: {
   params: {
     lang: string;
   };
 }) {
-  console.log("params", params);
   const getAllPosts = async () => {
     try {
       const posts = await directus.items("post").readByQuery({
@@ -41,13 +40,15 @@ export default async function Home({
   return (
     <PaddingContainer>
       <main className="h-auto space-y-10">
-        <PostCard post={posts[0]} />
+        <PostCard post={posts[0]} locale={lang} />
         <PostLists
+          locale={lang}
           posts={posts.filter((post, index) => index > 0 && index < 3)}
         />
-        <CTACard />
-        <PostCard reverse post={posts[3]} />
+        <CTACard locale={lang} />
+        <PostCard reverse post={posts[3]} locale={lang} />
         <PostLists
+          locale={lang}
           posts={posts.filter((post, index) => index > 3 && index < 6)}
         />
       </main>
