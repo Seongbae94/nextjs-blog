@@ -36,7 +36,7 @@ const PostContent = async ({
         <div className="w-2 h-2 rounded-full bg-neutral-200" />
         <div>{`${post.author.first_name} ${post.author.last_name}`}</div>
         <div className="w-2 h-2 rounded-full bg-neutral-200" />
-        <div>{getReadingTime(post.body, locale)}</div>
+        <div>{getReadingTime(post.body, locale) as string}</div>
         <div className="w-2 h-2 rounded-full bg-neutral-200" />
         <div>{getRelativeDate(post.date_created, locale)}</div>
       </div>

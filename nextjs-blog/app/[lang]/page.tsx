@@ -22,8 +22,29 @@ export default async function Home({
           "author.last_name",
           "category.id",
           "category.title",
+          "category.translations.*",
+          "translations.*",
         ],
       });
+
+      if (lang === "en") {
+        return posts.data;
+      } else {
+        const localisedPosts = posts.data?.map((post) => {
+          return {
+            ...post,
+            title: post.translations[0].title,
+            description: post.translations[0].description,
+            body: post.translations[0].body,
+            category: {
+              ...post.category,
+              title: post.category.translations[0].title,
+            },
+          };
+        });
+
+        return localisedPosts;
+      }
 
       return posts.data;
     } catch (error) {
