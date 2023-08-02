@@ -1,36 +1,51 @@
+"use client";
 import directus from "@/lib/directus";
 import { getDictionary } from "@/lib/getDictionary";
 import { revalidatePath, revalidateTag } from "next/cache";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
-const CTACard = async ({ locale }: { locale: string }) => {
-  const dictionary = await getDictionary(locale);
+const CTACard = ({ dictionary }: { dictionary: any }) => {
+  // const formAction = async (formData: FormData) => {
+  //   "use server";
+  //   try {
+  //     const email = formData.get("email");
+  //     await directus.items("subscribers").createOne({
+  //       email,
+  //     });
+  //     revalidateTag("subscribers-count");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
-  const formAction = async (formData: FormData) => {
-    "use server";
+  // const subscribersCount = await fetch(
+  //   `${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`,
+  //   {
+  //     next: {
+  //       tags: ["subscribers-count"],
+  //     },
+  //   }
+  // )
+  //   .then((res) => res.json())
+  //   .then((res) => res.meta.total_count)
+  //   .catch((error) => console.log(error));
+
+  const [email, setEmail] = useState("");
+  const [isHandling, setIsHandling] = useState(false);
+
+  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     try {
-      const email = formData.get("email");
-      await directus.items("subscribers").createOne({
-        email,
-      });
-      revalidateTag("subscribers-count");
+      setIsHandling(true);
+      await directus.items("subscribers").createOne({ email });
+      setIsHandling(false);
+      setEmail("");
     } catch (error) {
-      console.log(error);
+      alert(error);
+      setIsHandling(false);
     }
   };
-
-  const subscribersCount = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}items/subscribers?meta=total_count&access_token=${process.env.ADMIN_TOKEN}`,
-    {
-      next: {
-        tags: ["subscribers-count"],
-      },
-    }
-  )
-    .then((res) => res.json())
-    .then((res) => res.meta.total_count)
-    .catch((error) => console.log(error));
 
   return (
     <div className="rounded-md bg-slate-100 py-10 px-6 relative overflow-hidden">
@@ -50,28 +65,34 @@ const CTACard = async ({ locale }: { locale: string }) => {
           {dictionary.ctaCard.description}
         </p>
         <form
-          key={subscribersCount + "subscribers-form"}
-          action={formAction}
+          // key={subscribersCount + "subscribers-form"}
+          // action={formAction}
+          onSubmit={(e) => submitHandler(e)}
           className="mt-6 flex items-center gap-2 w-full"
         >
           <input
             type="email"
             name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             placeholder={dictionary.ctaCard.placeholder}
             className="md:w-auto w-full bg-white/80 text-base rounded-md placeholder:text-sm py-2 px-3 outline-none focus:ring-2 ring-neutral-600"
           />
-          <button className="bg-neutral-900 rounded-md whitespace-nowrap py-2 px-3 text-neutral-200">
-            {dictionary.ctaCard.button}
+          <button
+            type="submit"
+            className="bg-neutral-900 rounded-md whitespace-nowrap py-2 px-3 text-neutral-200"
+          >
+            {!isHandling ? dictionary.ctaCard.button : "Sending..."}
           </button>
         </form>
 
-        <div className="mt-5 text-neutral-700">
+        {/* <div className="mt-5 text-neutral-700">
           {dictionary.ctaCard.subscriberText1}{" "}
           <span className="bg-neutral-700 rounded-md text-neutral-100 py-1 px-2 text-sm">
             {subscribersCount}
           </span>{" "}
           {dictionary.ctaCard.subscriberText2}
-        </div>
+        </div> */}
       </div>
     </div>
   );
