@@ -1,0 +1,28 @@
+{
+  "navigation": {
+    "links": {
+      "cities": "Cities",
+      "experience": "Experiences"
+    }
+  },
+
+  "buttons": {
+    "readMore": "Read More"
+  },
+
+  "ctaCard": {
+    "title": "Explore the world with me!",
+    "description": "Explore the world with me! I'm traveling around the Earth. I've visited most of the great cities of America and currently I'm traveling in Korea. Join me!",
+    "button": "Sign Up",
+    "placeholder": "write your email.",
+    "subscriberText1": "Join our",
+    "subscriberText2": "subscribers now!"
+  },
+
+  "footer": {
+    "description": "A minimal and lovely travel blog which shares experiences and cities around the world!",
+    "rightsText": "All rights are reserved | Copyright",
+    "creatorText": "Made with love by",
+    "currentlyAtText": "Currently At"
+  }
+}
